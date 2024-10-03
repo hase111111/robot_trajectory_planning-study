@@ -1,0 +1,2 @@
+# robot_trajectory_planning-study
+マニピュレータの運動軌道生成の勉強用のレポジトリ
