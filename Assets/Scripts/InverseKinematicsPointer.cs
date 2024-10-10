@@ -6,6 +6,7 @@ public class InverseKinematicsPointer : MonoBehaviour
 
     private Sample3axisRobotController _robotController;
     Sample3axisRobotIK _sample3AxisRobotIK = new Sample3axisRobotIK();
+    uint ik_calc_mode = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +58,18 @@ public class InverseKinematicsPointer : MonoBehaviour
         // ãtâ^ìÆäwÇ…ÇÊÇÈäpìxÇÃåvéZ
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var angles = _sample3AxisRobotIK.GetJointAngles(transform.position);
+            var angles = _sample3AxisRobotIK.GetJointAngles(transform.position, ik_calc_mode);
+            _robotController.Axis1Angle = angles[0];
+            _robotController.Axis2Angle = angles[1];
+            _robotController.Axis3Angle = angles[2];
+        }
+
+        // ãtâ^ìÆäwÇÃåvéZåãâ ÇïœçX
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ik_calc_mode++;
+
+            var angles = _sample3AxisRobotIK.GetJointAngles(transform.position, ik_calc_mode);
             _robotController.Axis1Angle = angles[0];
             _robotController.Axis2Angle = angles[1];
             _robotController.Axis3Angle = angles[2];
