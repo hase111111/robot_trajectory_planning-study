@@ -5,16 +5,15 @@ public class InverseKinematicsPointer : MonoBehaviour
     [SerializeField, Range(0, 0.2f)] private float _velocity = 0.05f;
 
     private Sample3axisRobotController _robotController;
-    Sample3axisRobotIK _sample3AxisRobotIK = new Sample3axisRobotIK();
+    readonly Sample3axisRobotIK _sample3AxisRobotIK = new();
     uint ik_calc_mode = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         // Sample3axisRobotController‚ðŽæ“¾
-        _robotController = GameObject.Find("Sample3axisRobot").GetComponent<Sample3axisRobotController>();
 
-        if (_robotController == null)
+        if (!GameObject.Find("Sample3axisRobot").TryGetComponent<Sample3axisRobotController>(out _robotController))
         {
             Debug.LogError("Sample3axisRobotController‚ÌŽæ“¾‚ÉŽ¸”s‚µ‚Ü‚µ‚½");
             return;
