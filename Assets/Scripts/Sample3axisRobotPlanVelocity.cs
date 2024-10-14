@@ -19,6 +19,19 @@ public class Sample3axisRobotPlanVelocity : ISample3axisRobotPlan
     public void SetFinalPosition(float[] axis)
     {
         _finalPosition = axis;
+
+        // 360度以上の回転を避けるため，最短距離を計算
+        for (int i = 0; i < 3; i++)
+        {
+            if (_finalPosition[i] - _initialPosition[i] > 180)
+            {
+                _finalPosition[i] -= 360;
+            }
+            else if (_finalPosition[i] - _initialPosition[i] < -180)
+            {
+                _finalPosition[i] += 360;
+            }
+        }
     }
 
     public void SetOverallTime(float time)

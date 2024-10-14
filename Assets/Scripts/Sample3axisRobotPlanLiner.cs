@@ -13,6 +13,19 @@ public class Sample3axisRobotPlanLiner : ISample3axisRobotPlan
     public void SetFinalPosition(float[] axis)
     {
         finalPosition = axis;
+
+        // 360度以上の回転を避けるため，最短距離を計算
+        for (int i = 0; i < 3; i++)
+        {
+            if (finalPosition[i] - initialPosition[i] > 180)
+            {
+                finalPosition[i] -= 360;
+            }
+            else if (finalPosition[i] - initialPosition[i] < -180)
+            {
+                finalPosition[i] += 360;
+            }
+        }
     }
 
     public void SetOverallTime(float time)
