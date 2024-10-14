@@ -1,6 +1,4 @@
 ﻿
-using UnityEngine;
-
 public interface ISample3axisRobotPlan
 {
     void SetInitialPosition(float[] axis);

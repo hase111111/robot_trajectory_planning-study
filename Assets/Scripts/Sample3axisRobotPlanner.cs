@@ -7,7 +7,7 @@ namespace Assets.Scripts
         private Sample3axisRobotController _robotController;
         readonly private float[] _startAxisAngle = new float[3];
         readonly private float[] _endAxisAngle = new float[3];
-        readonly private ISample3axisRobotPlan _plan = new Sample3axisRobotPlanVelocity();
+        readonly private ISample3axisRobotPlan _plan = new Sample3axisRobotPlanLiner();
         private float _startTime = 0.0f;
         readonly private float _overallTime = 2.0f;
 
